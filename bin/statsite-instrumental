@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+#
+require "instrumental/statsite"
+
+client = ::Instrumental::Statsite::Client.new(ARGV[0])
+
+collector = ::Instrumental::Statsite::Collector.new
+parser    = ::Instrumental::Statsite::Parser.new(STDIN)
+
+parser.parse(collector)
+client.push(collector)
